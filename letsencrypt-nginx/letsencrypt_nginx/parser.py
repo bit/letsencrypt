@@ -480,7 +480,9 @@ def _add_directives(block, directives, replace=False):
         if not replace:
             # We insert new directives at the top of the block, mostly
             # to work around https://trac.nginx.org/nginx/ticket/810
-            block.insert(0, directive)
+            # Only add directive if its not already in the block
+            if directive not in block:
+                block.insert(0, directive)
         else:
             changed = False
             if len(directive) == 0:
