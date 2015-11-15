@@ -257,6 +257,8 @@ class NginxParser(object):
 
         ..note :: If replace is True, this raises a misconfiguration error
         if the directive does not already exist.
+        ..note :: If replace is False nothing gets added if an identical
+        block exists already.
 
         ..todo :: Doesn't match server blocks whose server_name directives are
             split across multiple conf files.
