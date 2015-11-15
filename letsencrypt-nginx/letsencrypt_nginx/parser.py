@@ -163,7 +163,7 @@ class NginxParser(object):
                     parsed = nginxparser.load(_file)
                     self.parsed[item] = parsed
                     trees.append(parsed)
-            except IOError: # pragma: no cover
+            except IOError:
                 logger.warn("Could not open file: %s", item)
             except pyparsing.ParseException:
                 logger.debug("Could not parse file: %s", item)
@@ -215,7 +215,7 @@ class NginxParser(object):
             try:
                 with open(filename, 'w') as _file:
                     nginxparser.dump(tree, _file)
-            except IOError: # pragma: no cover
+            except IOError:
                 logger.error("Could not open file for writing: %s", filename)
 
     def _has_server_names(self, entry, names):
