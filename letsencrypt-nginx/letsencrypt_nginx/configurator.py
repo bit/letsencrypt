@@ -369,18 +369,18 @@ class NginxConfigurator(common.Plugin):
     def _enable_redirect(self, vhost, unused_options):
         """Redirect all equivalent HTTP traffic to ssl_vhost.
 
-        Add rewrite directove to non https traffic
+        Add rewrite directive to non https traffic
 
         .. note:: This function saves the configuration
 
         :param vhost: Destination of traffic, an ssl enabled vhost
-        :type vhost: :class:`~letsencrypt_apache.obj.VirtualHost`
+        :type vhost: :class:`~letsencrypt_nginx.obj.VirtualHost`
 
         :param unused_options: Not currently used
         :type unused_options: Not Available
         """
         redirect_block = [[['if', '($scheme != "https")'],
-            [['rewrite', '^ https://$host$uri permanent']]
+            [['return', '301 https://$host$uri']]
         ]]
         self.parser.add_server_directives(vhost.filep, vhost.names,
             redirect_block)
