@@ -380,7 +380,7 @@ class NginxConfigurator(common.Plugin):
         :type unused_options: Not Available
         """
         redirect_block = [[['if', '($scheme != "https")'],
-            [['return', '301 https://$host$uri']]
+            [['return', '301 https://$host$request_uri']]
         ]]
         self.parser.add_server_directives(vhost.filep, vhost.names,
             redirect_block)
